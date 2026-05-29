@@ -1,27 +1,27 @@
+http:
+- matchers:
+  - part: body
+    type: word
+    words:
+    - <title>Burp API</title>
+  - part: header
+    type: word
+    words:
+    - X-Burp-Version
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  method: GET
+  path:
+  - '{{BaseURL}}/v0.1/'
 id: burp-rest-api-detect
-
 info:
-  name: Burp Rest API Server Running
   author: joanbono
+  metadata:
+    max-request: 1
+  name: Burp Rest API Server Running
+  reference:
+  - https://portswigger.net/burp/documentation/enterprise/api-reference
   severity: info
-  reference: https://portswigger.net/burp/documentation/enterprise/api-reference
-  tags: burp,tech
-
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}/v0.1/"
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        words:
-          - '<title>Burp API</title>'
-        part: body
-      - type: word
-        words:
-          - 'X-Burp-Version'
-        part: header
-      - type: status
-        status:
-          - 200
+  tags: burp,tech,discovery
